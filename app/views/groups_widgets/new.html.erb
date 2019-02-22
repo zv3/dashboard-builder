@@ -1,0 +1,9 @@
+<% title "Añadir widget al grupo" %>
+
+<% unless @widgets.empty? %>	
+  <%= render :partial => 'form' %>
+<% else %>
+	<%= "Ya no quedan widgets para añadir." %>
+<% end %>
+
+<p><%= link_to "Volver a la lista", group_widgets_path(@group) %></p>

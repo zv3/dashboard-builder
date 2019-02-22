@@ -1,0 +1,12 @@
+<% form_for @role do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name, 'Nombre' %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description, 'Descripci&oacute;n' %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p><%= f.submit "Enviar" %></p>
+<% end %>

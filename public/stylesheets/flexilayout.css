@@ -1,0 +1,167 @@
+.flexilayout-4-0 {
+	background-image:url(img/flexilayout/4/0.png?v=491);
+}
+
+* html .flexilayout-4-0 {
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src='/themes/base/img/flexilayout/4/0.png');
+	background-image:none;
+}
+
+.flexilayout-4-0 #column01,.flexilayout-4-0 #column02,.flexilayout-4-0 #column03,.flexilayout-4-0 #column04 {
+	width:24.15%;
+}
+
+.flexilayout-4-1 {
+	background-image:url(img/flexilayout/4/1.png?v=491);
+}
+
+* html .flexilayout-4-1 {
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src='/themes/base/img/flexilayout/4/1.png');
+	background-image:none;
+}
+
+.flexilayout-4-1 #column01 {
+	width:65.5%;
+}
+
+.flexilayout-4-1 #column02 {
+	width:33.4%;
+	float:right;
+}
+
+.flexilayout-4-1 #column03,.flexilayout-4-1 #column04 {
+	width:32.4%;
+	float:left;
+}
+
+* html .flexilayout-4-1 #column03,* html .flexilayout-4-1 #column04 {
+	width:32.2%;
+}
+
+.flexilayout-4-2 {
+	background-image:url(img/flexilayout/4/2.png?v=491);
+}
+
+* html .flexilayout-4-2 {
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src='/themes/base/img/flexilayout/4/2.png');
+	background-image:none;
+}
+
+.flexilayout-4-3 {
+	background-image:url(img/flexilayout/4/3.png?v=491);
+}
+
+* html .flexilayout-4-3 {
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src='/themes/base/img/flexilayout/4/3.png');
+	background-image:none;
+}
+
+.flexilayout-4-4 {
+	background-image:url(img/flexilayout/4/4.png?v=491);
+}
+
+* html .flexilayout-4-4 {
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src='/themes/base/img/flexilayout/4/4.png');
+	background-image:none;
+}
+
+.flexilayout-4-4 #column01 {
+	width:65.5%;
+	float:right;
+}
+
+.flexilayout-4-4 #column02 {
+	width:33.4%;
+}
+
+.flexilayout-4-4 #column03,.flexilayout-4-4 #column04 {
+	width:32.2%;
+	float:right;
+}
+
+.flexilayout-4-4 #column03 {
+	clear:right;
+}
+
+* html .flexilayout-4-4 #column03,* html .flexilayout-4-4 #column04 {
+	width:32.18%;
+}
+
+.flexilayout-4-5 {
+	background-image:url(img/flexilayout/4/5.png?v=491);
+}
+
+* html .flexilayout-4-5 {
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src='/themes/base/img/flexilayout/4/5.png');
+	background-image:none;
+}
+
+.flexilayout-4-6 {
+	background-image:url(img/flexilayout/4/6.png?v=491);
+}
+
+* html .flexilayout-4-6 {
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src='/themes/base/img/flexilayout/4/6.png');
+	background-image:none;
+}
+
+.flexilayout-4-6 #column01,.flexilayout-4-6 #column04 {
+	width:65.8%;
+}
+
+.flexilayout-4-6 #column02,.flexilayout-4-6 #column03 {
+	width:32.8%;
+}
+
+.flexilayout-3-0 {
+	background-image:url(img/flexilayout/3/0.png?v=491);
+}
+
+* html .flexilayout-3-0 {
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src='/themes/base/img/flexilayout/3/0.png');
+	background-image:none;
+}
+
+.flexilayout-3-0 #column01,.flexilayout-3-0 #column02,.flexilayout-3-0 #column03 {
+	width:32.55%;
+}
+
+.flexilayout-3-1 {
+	background-image:url(img/flexilayout/3/1.png?v=491);
+}
+
+* html .flexilayout-3-1 {
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src='/themes/base/img/flexilayout/3/1.png');
+	background-image:none;
+}
+
+.flexilayout-3-2 {
+	background-image:url(img/flexilayout/3/2.png?v=491);
+}
+
+* html .flexilayout-3-2 {
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src='/themes/base/img/flexilayout/3/2.png');
+	background-image:none;
+}
+
+.flexilayout-2-0 {
+	background-image:url(img/flexilayout/2/0.png?v=491);
+}
+
+* html .flexilayout-2-0 {
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src='/themes/base/img/flexilayout/2/0.png');
+	background-image:none;
+}
+
+.flexilayout-2-0 #column01,.flexilayout-2-0 #column02 {
+	width:49%;
+}
+
+.flexilayout-1-0 {
+	background-image:url(img/flexilayout/1/0.png?v=491);
+}
+
+* html .flexilayout-1-0 {
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src='/themes/base/img/flexilayout/1/0.png');
+	background-image:none;
+}

@@ -1,0 +1,17 @@
+<div class="gform_wrapper">
+  <% form_for [@group, @widget] do |f| %>
+    <%= f.error_messages %>
+
+    <div class="gform_body">
+      <ul class="gform_fields right_label">
+        <li class="gfield">
+          <%= f.label :widget_id, 'Widget', :class => 'gfield_label' %><br />
+          <div class="ginput_container"><%= collection_select(:groups_widgets, :widget_id, @widgets, :id, :name) %></div>
+        </div>
+      </ul>
+    </div>
+    <div class="gform_footer right_label">
+      <input type="image" tabindex="6" src="/images/woo/btn-submit.png">
+    </div>
+  <% end %>
+</div>

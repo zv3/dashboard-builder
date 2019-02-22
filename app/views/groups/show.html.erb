@@ -1,0 +1,76 @@
+<% title "Grupo: #{@group.name}" %>
+
+<h2>Miembros</h2>
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th colspan="4">Opciones</th>
+  </tr>
+  <% for member in @group.users %>
+    <tr>
+      <td><%= member.username %></td>
+      <td align="center">
+        <%= link_to 'Borrar', {:controller => 'groups', :action => 'delete_member', :id => @group.id,
+        :user_id => member.id}, :method => :post, :confirm => 'Esta seguro?' %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<h2>Widgets</h2>
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th colspan="4">Opciones</th>
+  </tr>
+  <% for widget in @group.widgets %>
+    <tr>
+      <td><%= widget.name %></td>
+      <td align="center">
+        <%= link_to 'Borrar', {:controller => 'groups', :action => 'delete_widget', :id => @group.id,
+        :widget_id => widget.id}, :method => :post, :confirm => 'Esta seguro?' %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<h2>Añadir miembro al grupo</h2>
+<% form_for @group, :url => add_member_group_path, :html => { :method => :post } do |c| %>
+  <%= c.error_messages :class => 'info-box'%>
+
+  <div class="gform_wrapper">
+    <div class="gform_body">
+      <ul class="gform_fields right_label">
+        <li class="gfield">
+          <%= label_tag :username, 'Nombre de Usuario', :class => 'gfield_label' %>
+          <div class="ginput_container"><%= text_field_tag :username %></div>
+        </li>
+      </ul>
+    </div>
+    <div class="gform_footer right_label">
+      <input type="image" tabindex="6" src="/images/woo/btn-submit.png">
+    </div>
+  </div>
+<% end %>
+
+<h2>Añadir widget al grupo</h2>
+
+<% form_for @group, :url => add_widget_group_path, :html => { :method => :post } do |f| %>
+  <%= f.error_messages :class => 'info-box' %>
+  <div class="gform_wrapper">
+    <div class="gform_body">
+      <ul class="gform_fields right_label">
+        <li class="gfield">
+          <%= label_tag :widget_id, 'Widget', :class => 'gfield_label' %>
+          <div class="ginput_container"><%= collection_select(:widget, :widget_id, @widgets, :id, :name) %></div>
+        </li>
+      </ul>
+    </div>
+    <div class="gform_footer right_label">
+      <input type="image" tabindex="6" src="/images/woo/btn-submit.png">
+    </div>
+  </div>
+<% end %>
+
+
+<p><%= link_to "Ver Grupos", groups_path %></p>

@@ -1,0 +1,13 @@
+<% form_for @rating do |f| %>
+  <%= f.error_messages %>
+  <% if @rate > 0 %>
+  	<p>Tu puntaje fue: <%= @rate %></p>
+  <% else %>
+  	<p>
+    	<%= f.label :rate %>
+    	<%= f.select(:rate, [1,2,3,4,5]) %>
+  	</p>
+  	<%= f.hidden_field :widget_id %>
+  	<p><%= f.submit 'Enviar' %></p>
+  <% end %>
+<% end %>

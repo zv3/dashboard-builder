@@ -1,0 +1,52 @@
+<% form_for @user do |f| %>
+  <%= f.error_messages :class => 'info-box'%>
+
+  <div class="gform_wrapper">
+		<div class="gform_body">
+			<ul class="gform_fields right_label">
+				<% if permitted_to? :manage, User.new and @user.role_id != current_user.role_id %>
+					<li class="gfield">
+						<%= f.label :rol, 'Rol', :class => 'gfield_label' %>
+						<div class="ginput_container">
+						<%= collection_select(:user, :role_id, Role.all(:conditions => ['id <= ?', current_user.role_id == 3 ? 2:3]), :id, :name) %>
+						</div>
+					</li>
+					<li class="gfield">
+						<%= f.label :active, 'Activo?', :class => 'gfield_label' %>
+						<div class="ginput_container"><%= f.check_box :active %></div>
+					</li>
+					<li class="gfield">
+						<%= f.label :banned, 'Restringido?', :class => 'gfield_label' %>
+						<div class="ginput_container"><%= f.check_box :banned %></div>
+					</li>	
+				<% else %>
+					<li class="gfield">
+						<%= f.label :rol, '', :class => 'gfield_label' %>
+						<div class="ginput_container"><strong><%= @user.role.name %></strong></div>
+					</li>
+				<% end %>
+
+				<li class="gfield">
+					<%= f.label :username, 'Nombre de Usuario', :class => 'gfield_label' %>
+					<div class="ginput_container"><%= f.text_field :username %></div>
+				</li>
+				<li class="gfield">
+					<%= f.label :email, '', :class => 'gfield_label' %>
+					<div class="ginput_container"><%= f.text_field :email %></div>
+				</li>
+				<li class="gfield">
+					<%= f.label :password, 'Contraseña', :class => 'gfield_label' %>
+					<div class="ginput_container"><%= f.password_field :password %></div>
+				</li>
+				<li class="gfield">
+					<%= f.label :password_confirmation, 'Confirmaci&oacute;n de Contraseña', :class => 'gfield_label' %>
+					<div class="ginput_container"><%= f.password_field :password_confirmation %></div>
+				</li>  
+			</ul>
+		</div>
+		<div class="gform_footer right_label">
+			<input type="image" tabindex="6" src="/images/woo/btn-submit.png">
+		</div>
+	</div>
+<% end %>
+

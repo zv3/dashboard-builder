@@ -1,0 +1,16 @@
+<% title "Rol" %>
+
+<p>
+  <strong>Nombre:</strong>
+  <%=h @role.name %>
+</p>
+<p>
+  <strong>Descripci&oacute;n:</strong>
+  <%=h @role.description %>
+</p>
+
+<p>
+  <%= link_to "Editar", edit_role_path(@role) %> |
+  <%= link_to "Borrar", @role, :confirm => 'Está seguro?', :method => :delete %> |
+  <%= link_to "Ver Todo", roles_path %>
+</p>

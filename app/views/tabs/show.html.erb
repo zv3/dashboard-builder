@@ -1,0 +1,24 @@
+<% title "Tab" %>
+
+<p>
+  <strong>Title:</strong>
+  <%=h @tab.title %>
+</p>
+<p>
+  <strong>Image:</strong>
+  <%=h @tab.image_id %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%=h @tab.user_id %>
+</p>
+<p>
+  <strong>Theme:</strong>
+  <%=h @tab.theme_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_tab_path(@tab) %> |
+  <%= link_to "Destroy", @tab, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", tabs_path %>
+</p>

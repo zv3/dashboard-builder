@@ -1,0 +1,22 @@
+<% title "Inicio de Sesión" %>
+
+  <% form_for @user_session do |f| %>
+    <%= f.error_messages :class => 'info-box' %>
+  <div class="gform_wrapper">
+  	<div class="gform_body">
+  	  <ul class="gform_fields right_label">
+  		  <li class="gfield">
+          <%= f.label :username, 'Nombre de Usuario', :class => 'gfield_label' %>
+          <div class="ginput_container"><%= f.text_field :username %></div>
+        </li>
+        <li class="gfield">
+          <%= f.label :password, 'Contraseña', :class => 'gfield_label' %>
+          <div class="ginput_container"><%= f.password_field :password %></div>
+        </li>
+      </ul>
+    </div>
+  	<div class="gform_footer right_label">
+  		<input type="image" tabindex="6" src="/images/woo/btn-submit.png">
+  	</div>
+  <% end %>
+</div>

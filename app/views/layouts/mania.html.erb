@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title><%= h(yield(:title)) %></title>
+	<%= stylesheet_link_tag 'style', 'flexilayout' %>
+	<%= yield(:head) %>
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<div class="stripe">&nbsp;</div>
+			<!-- <div class="logo">&nbsp;</div> -->
+			<%= yield(:tabs) %>
+			<div class="options">
+				<div class="txt-opt"><i>Hola, <b><%= logged_in? ? current_user.username : "Invitado" %></b></i></div>
+				<div class="txt-opt"><%= link_to "Mi Escritorio", root_url %></div>
+				<div class="txt-opt"><%= link_to "Buscar Widget", widgets_path %></div>
+				<% if logged_in? %>
+					<% has_role_with_hierarchy?(:administrador) do %>
+						<div class="txt-opt"><%= link_to "Solicitudes (#{Request.all.size})", requests_path %></div>
+						<div class="txt-opt"><%= link_to "Usuarios", users_path %></div>
+						<div class="txt-opt"><%= link_to "Categorias", categories_path %></div>
+					<% end %>
+					<% has_role_with_hierarchy?(:desarrollador) do %>
+						<div class="txt-opt"><%= link_to "Grupos", groups_path %></div>
+					<% end %>
+					<div class="txt-opt"><%= link_to "Editar Perfil", edit_user_path(current_user) %></div>
+					<div class="txt-opt"><%= link_to "Finalizar Sesi&oacute;n", logout_path %></div>
+				<% else %>
+					<div class="txt-opt"><%= link_to "Registrarse", new_user_path %></div>
+					<div class="txt-opt"><%= link_to "Iniciar Sesi&oacute;n", login_path %></div>
+				<% end %>
+			</div>
+		</div>
+		<div id="content">
+		<%= yield %>
+		</div>
+		<div id="footer">
+			<div class="left"></div>
+			<div class="right"></div>
+		</div>
+	</div>
+</body>
+</html>

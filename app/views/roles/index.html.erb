@@ -1,0 +1,22 @@
+<% title "Roles" %>
+
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Descripci&oacute;n</th>
+    <th colspan="3">Acción</th>
+  </tr>
+  <% for role in @roles %>
+    <tr>
+      <td><%=h role.name %></td>
+      <td><%=h role.description %></td>
+      <td><%= link_to "Ver", role %></td>
+      <% if role.id > 4 %>
+        <td><%= link_to "Editar", edit_role_path(role) %></td>
+        <td><%= link_to "Borrar", role, :confirm => 'Está seguro?', :method => :delete %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "Nuevo Rol", new_role_path %></p>

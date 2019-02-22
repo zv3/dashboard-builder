@@ -1,0 +1,15 @@
+<% title "Themes" %>
+Categoria: 
+<% form_remote_for @search, :html => { :id => :search_theme }, :method => 'get' do |f| -%>
+	<%= f.collection_select :category_id_equals, @categories, :id, :name, { :include_blank => 'Todos' }, { :onchange => "$('#search_theme').submit();"} %>
+<% end %>
+<br />
+
+<div id="themes-list">
+<%= render :partial => 'theme', :collection => @themes %>
+</div>
+
+<div style="clear:both">&nbsp;</div>
+<% if permitted_to? :create, Theme.new %>
+	<p><%= link_to "Agregar Nuevo Tema", new_theme_path %></p>
+<% end %>

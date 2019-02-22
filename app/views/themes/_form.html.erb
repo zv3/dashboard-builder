@@ -1,0 +1,44 @@
+<% form_for @theme do |f| %>
+  <%= f.error_messages :class => 'info-box' %>
+
+  <div class="gform_wrapper">
+    <div class="gform_body">
+      <ul class="gform_fields right_label">
+        <li class="gfield">
+          <%= f.label :category_type, 'Categor&iacute;a', :class => 'gfield_label' %>
+          <div class="ginput_container"><%= f.collection_select :category_id, Category.all(:conditions => { :category_type => 't' }), :id, :name %></div>
+        </li>
+  
+    		<li class="gfield">
+          <%= f.label :public, 'Publico', :class => 'gfield_label' %>
+          <div class="ginput_container"><%= f.check_box :public %></div>
+        </li>
+      
+    		<li class="gfield">
+          <%= f.label :name, 'Nombre', :class => 'gfield_label' %>
+          <div class="ginput_container"><%= f.text_field :name, :size => 50 %></div>
+        </li>
+      
+    		<li class="gfield">
+          <%= f.label :font, 'Fuente', :class => 'gfield_label' %>
+          <div class="ginput_container"><%= f.select(:font, ["Arial", "Tahoma", "Lucida"]) %></div>
+        </li>
+      
+        <li class="gfield">
+          <%= f.label :color, 'Color', :class => 'gfield_label' %>
+          <div class="ginput_container"><%= f.text_field :color, :size => 6 %></div>
+        </li>
+      
+        <li class="gfield">
+          <%= label_tag :image_remote_url, 'URL externo de la imagen', :class => 'gfield_label' %>
+          <div class="ginput_container"><%= text_field_tag :image_remote_url, @theme.image.try(:image_url), :size => 60 %></div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="gform_footer right_label">
+      <input type="image" tabindex="6" src="/images/woo/btn-submit.png">
+    </div>
+  </div>
+<% end %>
+

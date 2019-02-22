@@ -1,0 +1,19 @@
+<% title "Recuperar Contraseña" %>
+
+Rellene el siguiente formulario y las instrucciones para restablecer su contraseña le será enviada por correo electrónico:<br />
+<br />
+
+<div class="gform_wrapper">
+<% form_tag password_resets_path do %>
+<div class="gform_body">
+  <ul class="gform_fields right_label">
+    <li class="gfield">
+      <label class="gfield_label">Email:</label>
+      <div class="ginput_container"><%= text_field_tag "email" %></div>
+    </li>
+  </ul>
+  <div class="gform_footer right_label">
+    <input type="image" tabindex="6" src="/images/woo/btn-submit.png">
+  </div>
+</div>
+<% end %>

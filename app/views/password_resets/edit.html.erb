@@ -1,0 +1,22 @@
+<% title "Cambiar Contraseña" %>
+
+<div class="gform_wrapper">
+  <% form_for @user, :url => password_reset_path, :method => :put do |f| %>
+    <%= f.error_messages %>
+
+    <div class="gform_body">
+      <ul class="gform_fields right_label">
+        <li class="gfield">
+          <%= f.label :password, 'Contraseña nueva', :class => 'gfield_label' %>
+          <div class="ginput_container"><%= f.password_field :password %></div>
+        </li>
+        <li class="gfield">      
+          <%= f.label :password_confirmation, 'Confirme su contraseña nueva', :class => 'gfield_label' %>        
+          <div class="ginput_container"><%= f.password_field :password_confirmation %></div>
+        </li>
+      </ul>
+      <div class="gform_footer right_label">
+        <input type="image" tabindex="6" src="/images/woo/btn-submit.png">
+      </div>
+  <% end %>
+</div>

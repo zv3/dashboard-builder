@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head profile="http://gmpg.org/xfn/11">
+  <title>WUCA - <%= h(yield(:title)) %></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<%= stylesheet_link_tag 'woo', 'woo-forms', 'woo-tabs' %>
+	<%= javascript_include_tag 'jquery-1.4.2.min', 'jquery.effects.core.min', 'jquery.effects.slide.min', 'basic' %>
+	<%= yield(:head) %>
+</head>
+
+<body class="archive paged category category-themes paged-2 category-paged-2 gecko">
+  <div id="top">
+    <h1><a href="/">WUCA</a></h1>
+    <a href="/" title="WUCA"><img class="title" src="/images/woo/logo.png" alt="WUCA" /></a>
+
+    <div id="top-nav">
+      <ul id="nav" class="fl">
+        <li <%= is_active?("dashboards") %>><a href="/"><span>Mi Escritorio</span></a></li>
+        <li <%= is_active?("widgets") %>><a href="/widgets"><span>Widgets</span></a></li>
+        <li <%= is_active?("themes") %>><a href="/themes"><span>Temas</span></a></li>
+        <% unless logged_in? %> 
+          <li <%= is_active?("users", "new") %>><a href="<%= url_for new_user_path %>"><span>Registrarse</span></a></li>
+        <% end %>
+        <li <%= is_active?("faq") %>><a href="/faq"><span>Ayuda</span></a></li>
+      </ul>
+
+      <% unless logged_in? %>
+      <div id="login" class="fr">
+        <a href="#" class="login-button"><span>Login</span></a>
+
+        <div id="login-popout">
+          <div id="login-top">
+            <h3 class="fl">Iniciar Sesi&oacute;n</h3>
+
+            <div class="fix"></div>
+          </div>
+
+          <form name="loginform" action="<%= url_for user_sessions_path %>" method=
+          "post" id="loginform">
+            <label for="userid" class="fl">Usuario:</label> <input class="userid fr"
+            type="text" name="user_session[username]" value="" id="userid" size="15" />
+
+            <div class="fix"></div><label class="fl" for="password">Contrase&ntilde;a:</label>
+            <input class="password fr" type="password" name="user_session[password]" value="" id="password"
+            size="10" />
+
+            <div class="fix"></div>
+
+            <div class="form-bot">
+              <label class="fl" style="font-size:10px;text-transform:uppercase;"><a href=
+              "<%= url_for new_password_reset_path %>">Recuperar Contrase&ntilde;a?</a></label>
+              <input class="submit fr" src=
+              "/images/woo/btn-submit.png"
+              type="image" name="submit" value="Submit" />
+            </div>
+          </form>
+        </div>
+      </div>
+      <% else %>
+        <div id="admin" class="fr">
+          <a href="#" class="admin-button"><span><%= current_user.username %></span></a>
+
+          <div id="admin-popout">
+            <div id="admin-top">
+              <h3 class="fl">Men&uacute;</h3>
+
+              <div class="fix"></div>
+            </div>
+            <ul>
+              <% has_role_with_hierarchy?(:administrador) do %>
+              <li><%= link_to "Solicitudes (#{Request.all.size})", requests_path %></li>
+              <li><%= link_to "Usuarios", users_path %></li>
+              <li><%= link_to "Categorias", categories_path %></li>
+              <br />
+              <div style="border-bottom:1px solid #C4D5DF;"></div>
+              <br />
+              <% end %>
+              <li><%= link_to "Editar Mi Perfil", edit_user_path(current_user) %></li>
+              <% has_role_with_hierarchy?(:desarrollador) do %>
+                <li><%= link_to "Grupos", groups_path %></li>
+              <% end %>
+              <li><%= link_to "Finalizar Sesi&oacute;n", logout_path %></li>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <%= yield(:pageheading) %>
+
+  <div id="main">
+    <div id="theme-gallery" class="content">
+      <div class="fix"></div>
+
+  		<%- flash.each do |name, msg| -%>
+  			<%= content_tag :p, msg, :id => "flash_#{name}", :class => "#{name}-box" %>
+  		<%- end -%>
+
+		  <h4><%= yield :title %></h4>
+		
+      <div class="fix"></div>
+      <div id="tabs-main"></div>
+      <div class="fix"></div>
+      <div class="content single-theme">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+
+  <div class="fix"></div>
+
+  <div id="footer">
+    <div class="content">
+      <div class="col-left">
+        <p><strong>&copy; 2010 WUCA.</strong></p>
+      </div>
+
+      <div class="col-right">
+        <p>
+          <a href="http://dev.netvibes.com"><img src="/images/woo/netvibes.png" alt="NetVibes" /></a>&nbsp;&nbsp;
+          <a href="http://www.rubyonrails.org"><img src="/images/woo/rails.png" alt="Ruby on Rails" /></a>&nbsp;&nbsp;
+          <a href="http://www.uc.edu.py"><img src="/images/woo/uca.png" alt="UCA" /></a></p>
+      </div>
+
+      <div class="fix"></div>
+    </div>
+  </div>
+</body>
+</html>

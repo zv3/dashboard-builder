@@ -1,0 +1,85 @@
+<% title "Widgets" %>
+
+<div class="col-left single">
+  <div class="post wrap">
+    <div class="unique-features">
+      <% if @widgets.size > 0 %>
+        <ul>
+          <% @widgets.each do |widget| %>
+          <li>
+            <a href="<%= url_for widget_path(widget) %>">
+              <% if widget.image %>
+                <img width="80" height="80" alt="" src="<%= url_for widget.image.data.url(:thumb) %>"  class="alignnone size-full wp-image-5195" />
+              <% end %>
+            </a>
+            <br />
+
+            <h3><%= link_to widget.name, widget_path(widget) %></h3>
+            <p><%= widget.description %></p>
+            <p class="widget-links"><a href="<%= url_for new_container_path(:widget_id => widget.id) %>">Agregar a mi escritorio</a></p>
+          </li>
+          <% end %>
+        </ul>
+      <% else %>
+        No existen resultados para su consulta.
+      <% end %>
+    </div>
+    <% unless params[:shared] || params[:my_widgets]%>
+      <%= will_paginate @widgets, :separator => nil, :next_label => "»", :previous_label => "«" %>
+    <% end %>
+  </div>
+</div>
+<div class="col-right blog" id="sidebar">
+
+  <% if permitted_to? :create, Widget.new %>
+    <div class="block widget" id="search_main">
+      <p align="center"><a class="add-widget-btn" href="<%= url_for new_widget_path %>"></a></p>
+      <br />
+    </div>
+  <% end %>
+  
+  <div class="block widget" id="search_main">
+    <h3><span class="cufon cufon-canvas" style=
+    "width: 57px; height: 16px;"><span class="cufon-alt">Buscar</span></span></h3>
+
+    <form class="searchform" id="cse-search-box-footer" action="<%= url_for widgets_path %>" name="cse-search-box-footer">
+      <div>
+        <input type="text" size="31" name="search[name_like_or_description_like]" class="field" />
+      </div>
+      <input type="image" value="Submit" src="/images/woo/btn-submit.png" name="sa" id="go" class="fr" />
+    </form>
+  </div>
+
+  <div class="fix"></div>
+
+  <div class="widget block widget_categories">
+    <h3 class="widget_title">
+      <span class="cufon cufon-canvas" style="width: 87px; height: 16px;"><span class="cufon-alt">Categorias</span></span>
+    </h3>
+
+    <ul class="recent">
+      <% if has_role_with_hierarchy?(:registrado) %>
+        <li class="cat-item">
+          <a title="Ver todos los widgets agregados recientemente" href="<%= url_for widgets_path %>?shared=true">Widgets Compartidos</a>
+        </li>
+      <% end %>
+      <% if has_role_with_hierarchy?(:desarrollador) %>
+        <li class="cat-item">
+          <a title="Ver todos los widgets agregados recientemente" href="<%= url_for widgets_path %>?my_widgets=1>">Mis Widgets</a>
+        </li>
+      <% end %>
+      <li class="cat-item">
+        <a title="Ver todos los widgets" href="<%= url_for widgets_path %>">Todos</a>
+      </li>
+      <li class="cat-item">
+        <a title="Ver todos los widgets agregados recientemente" href="<%= url_for widgets_path %>?search[order]=descend_by_id">M&aacute;s Recientes</a>
+      </li>
+      <% @categories.each do |cat| %>
+        <li class="cat-item">
+          <a title="Ver todos los widgets de la categoria <%= h cat.name %>" href="<%= url_for widgets_path %>?search[category_id_equals]=<%= cat.id %>"><%= h cat.name %></a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+    </div>
+</div>

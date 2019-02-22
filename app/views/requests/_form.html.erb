@@ -1,0 +1,21 @@
+<div class="gform_wrapper">
+  <% form_for @request do |f| %>
+    <%= f.error_messages %>
+  	<div class="gform_body">
+  		<ul class="gform_fields right_label">
+        <%= f.label :message, 'Mensaje', :class => 'gfield_label' %>
+      	<div class="ginput_container"><%= f.text_area :message %></div>
+      </ul>
+    </div>
+    <%= f.hidden_field :request_type %>
+    <%= f.hidden_field :theme_id %>
+    <%= f.hidden_field :widget_id %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :comment_id %>
+
+  	<div class="gform_footer right_label">
+  		<input type="image" tabindex="6" src="/images/woo/btn-submit.png">
+  	</div>
+  
+  <% end %>
+</div>

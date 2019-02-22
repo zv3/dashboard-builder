@@ -1,0 +1,182 @@
+ $(document).ready(function(){
+	$("#widCols")
+		.eq(0)
+			.columnSizing({
+				viewResize : true, 
+				viewGhost : false, 
+				tableWidthFixed : true,
+				selectCells : "tr:first>*:not(:last)",
+				cssDragLine :{borderRight:"5px solid #ae89a5",cursor:"col-resize" },
+				cssDragArea : {border:"15px solid #fff",backgroundColor:"#6897cc",cursor:"col-resize"},
+				minWidth: 100
+				})
+			.end()
+	$('<a href="#">X</a>').appendTo('#content .delete');
+	$(".delete a").click(function() {
+		//$(this).parents(".widget").css("display", "none" );
+		$(this).parents(".widget").remove();
+   });
+   $("#tab-list .more").click( function(){listMore()});
+   //$("#tab-list .less").click(function listLess());
+   var tabs= $("#tab-list .name");
+  $.each(tabs,function (){
+		var txt= $.trim($(this).text());
+		//$("#tab-selection").append(document.createNode( this ));
+		$('<div class="name"><a href="#" onClick="getTab(\''+ txt +'\')">' + txt + '</a></div>').appendTo("#tab-selection");
+		
+		//alert( texto );
+   })
+   //alert(tabs);
+   createTabs();
+	loadWidgets();
+   //$.fn.EasyWidgets();
+ });
+function createTabs(){
+	for( vtab in app["userData"]["tabs"] ){
+		//$("#content").append('<div id="tab_'+app["userData"]["tabs"]["0"]["id"]+'" ><div id="containers"> </div></div>'); //este no se si va a hacer falta legalmente
+		$("#tab-list").append('<div class="tab-sel" id="ts_'+vtab+'"><div class="name">'+app["userData"]["tabs"][vtab]["title"]+'</div> <div class="options"><div class="edit">&nbsp;</div><div class="delete">X</div></div></div>');
+		$('<div class="name" id="n_'+vtab+'"><a href="#" onClick="showTab(\''+ vtab +'\')">' + app["userData"]["tabs"][vtab]["title"] + '</a></div>').appendTo("#tab-selection");
+	}
+	$("#tab-list").children(".tab-sel:first").addClass("selected");
+	tabVal=0;
+}
+function loadWidgets(){
+	var reSort= new Array();
+	$("#content").empty();
+	$("#content").append('<div id="tab_'+app["userData"]["tabs"][tabVal]["id"]+'" ><div class="containers"> </div></div>'); //este no se si va a hacer falta legalmente
+	for(var i=0;i<app["userData"]["tabs"][tabVal]["cols"];i++){
+		//pongo nomás layout como un class, no se como definiste tu css
+		$("#tab_"+app["userData"]["tabs"][tabVal]["id"]+" .containers").append( '<div id="column_'+ i +'" class="widget-place layout_'+app["userData"]["tabs"][tabVal]["layout"]+'" > </div>');
+	}
+	for ( widget in app["userData"]["containers"]){
+		if(	app["userData"]["containers"][widget]["tab"] == app["userData"]["tabs"][tabVal]["id"]){
+			//crea el container
+			if(app["userData"]["containers"][widget]["row"] != null ){
+				//someLoaded=false;
+				foundPos=false;
+				curDomWid=$('#tab_' + app["userData"]["containers"][widget]["tab"] + ' #column_' + app["userData"]["containers"][widget]["col"]).children(":first");
+				
+				while(curDomWid.length > 0){
+					//someLoaded=true;
+					current=curDomWid.attr("id");
+					current=current.substring(10);
+					if(app["userData"]["containers"][current]["row"] > app["userData"]["containers"][widget]["row"]){
+						foundPos=true;
+						curDomWid.before('<div id="container_'+widget+'" class="widget movable collapsable editable"></div>');
+						break;
+					}
+					curDomWid=curDomWid.next(".widget");
+				}
+
+				if(!foundPos){
+					//cargamos al final del conenedor
+					$('#tab_' + app["userData"]["containers"][widget]["tab"] + ' #column_' + app["userData"]["containers"][widget]["col"]).append('<div id="container_'+widget+'" class="widget movable collapsable editable"></div>');
+				}	
+			}else{
+				//agregamos al final, suponemos mientras un row value feroz, pero se reordena al final el container
+				app["userData"]["containers"][widget]["row"]=30000;
+				$('#tab_' + app["userData"]["containers"][widget]["tab"] + ' #column_' + app["userData"]["containers"][widget]["col"]).append('<div id="container_'+widget+'" class="widget movable collapsable editable"></div>');
+				reSort.push(widget);
+			}
+			
+			
+			//titulo
+			$('#container_'+widget).append('<div class="widget-header"><div class="text">'+ app["userData"]["containers"][widget]["title"] +'</div></div>');
+			//edit
+			$('#container_'+widget).append('<div class="widget-editbox">'+ 'cosas para editar, no se como vamos a pasar finalmente' +'</div>');
+			//contenido, el BW carga el widget acá
+			$('#container_'+widget).append('<div class="widget-content" id="wcontent_'+widget+'"> </div>');
+			
+			var BW = new UWA.BlogWidget( {
+				container: document.getElementById('wcontent_'+widget),
+				moduleUrl: app["userData"]["containers"][widget]["widgetURL"] } );
+			BW.setConfiguration(
+				{ 'borderWidth':'1', 'color':'#aaaaaa', 'displayTitle':false, 'displayFooter':false } );
+		}
+	}
+
+	for(widget in reSort) resortContainer(widget);
+	$.fn.EasyWidgets({
+		effects : {
+		  effectDuration : 100,
+		  widgetShow : 'slide',
+		  widgetHide : 'slide',
+		  widgetClose : 'slide',
+		  widgetExtend : 'slide',
+		  widgetCollapse : 'slide',
+		  widgetOpenEdit : 'slide',
+		  widgetCloseEdit : 'slide',
+		  widgetCancelEdit : 'slide'
+		},
+		callbacks : {
+			onDragStop: function(e,id){
+				wid=id["item"]["context"]["id"];
+				wid=wid.substring(10)
+				updateArray(wid);
+			}
+		}
+	});
+}
+ 
+ function updateArray(wid){
+	column=$("#container_"+wid).parent().attr("id");
+	newcolumn= app["userData"]["containers"][wid]["col"]=column.substring(7);
+	wnext=$("#container_"+wid).next(".widget").attr("id");
+	wprev=$("#container_"+wid).prev(".widget").attr("id");
+	if(wprev)a=app["userData"]["containers"][wprev.substring(10)]["row"];
+	else a=0;
+	if(wnext)b=app["userData"]["containers"][wnext.substring(10)]["row"];
+	else b=a+1000;
+	
+	newRow=parseInt((a+b)/2);
+	if(newRow == a){
+		resortContainer(wid);
+	}else{
+		app["userData"]["containers"][wid]["row"]=newRow;
+	}
+	
+	$.ajax({
+	  url: "/containers/" + app["userData"]["containers"][wid]["id"] + ".js",
+		// dataType: "json",
+	  type: "POST",
+	  data: "_method=put&container[order]=" + newRow + "&container[column]=" + newcolumn,
+	  // success: function() {
+	  // }
+	});
+ }
+ 
+ function resortContainer(wid){
+	c=0;
+	$("#container_"+wid).parent().children(".widget").each( function(){
+		++c;
+		container=$(this).attr("id").substring(10);
+		app["userData"]["containers"][container]["row"]=c*1000;
+	});
+ }
+ 
+    function getTab(txt){
+		$("#tab-list .name").parent().removeClass("selected");
+		$("#tab-list .name:contains("+txt+")").parent().addClass("selected");
+		listLess();
+   }
+   function showTab(id){
+		$("#tab-list .selected").removeClass("selected");
+		$("#ts_"+id).addClass("selected");
+		tabVal=id;
+		listLess();
+		loadWidgets();
+   }
+   function listMore(){
+		$("#tab-selection").css("display","block");
+		$("#tab-list .more").addClass("less");
+		$("#tab-list .more").removeClass("more");
+		$("#tab-list .less").unbind();
+		$("#tab-list .less").bind( 'click', function(){listLess( )});
+	}
+	function listLess(){
+		$("#tab-selection").css("display","none");
+		$("#tab-list .less").addClass("more");
+		$("#tab-list .less").removeClass("less");
+		$("#tab-list .more").unbind();
+		$("#tab-list .more").bind('click', function(){listMore()});
+	}

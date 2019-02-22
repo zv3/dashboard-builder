@@ -1,0 +1,23 @@
+<% title "Tabs" %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Image</th>
+    <th>User</th>
+    <th>Theme</th>
+  </tr>
+  <% for tab in @tabs %>
+    <tr>
+      <td><%=h tab.title %></td>
+      <td><%=h tab.image_id %></td>
+      <td><%=h tab.user_id %></td>
+      <td><%=h tab.theme_id %></td>
+      <td><%= link_to "Show", tab %></td>
+      <td><%= link_to "Edit", edit_tab_path(tab) %></td>
+      <td><%= link_to "Destroy", tab, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Tab", new_tab_path %></p>

@@ -1,0 +1,10 @@
+<% form_for @tab do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+
+  <p><%= f.submit %></p>
+  <%= link_to "Volver", root_url %>
+<% end %>

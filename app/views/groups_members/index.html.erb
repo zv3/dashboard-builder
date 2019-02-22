@@ -1,0 +1,19 @@
+<% title "Usuarios del Grupo" %>
+
+<table>
+  <tr>
+    <th>Usuario</th>
+    <th>Acción</th>
+  </tr>
+  <% for user in @users %>
+    <tr>
+      <td><%=h user.username %></td>
+      <td><%= link_to "Quitar", group_member_path(@group, user), :confirm => 'Está seguro?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p>
+	<%= link_to "Añadir", new_group_member_path(@group) %> |
+	<%= link_to "Volver a los Grupos", groups_path %>
+</p>

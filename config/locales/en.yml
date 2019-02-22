@@ -1,0 +1,26 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  hello: "Hello world"
+  authlogic:
+    error_messages:
+      login_blank: "no debe estar en blanco"
+      login_not_found: "no es válido"
+      login_invalid: "solo debe ingresar letras, números y -_@ sin espacios"
+      consecutive_failed_logins_limit_exceeded: "Se sobrepaso el número consecutivo de logins, la cuenta fue desactivada"
+      email_invalid: "debe ser un email válido."
+      password_blank: "no debe estar en blanco"
+      password_invalid: "no es válido"
+      not_active: "Su cuenta no esta activa"
+      not_confirmed: "Su cuenta no ha sido confirmada"
+      not_approved: "Su cuenta no fue aprovada"
+      #no_authentication_details: "Usted no proveio ningún detalle para la autentu¡icación."
+    models:
+      user_session: "UsuarioSession (o lo que este usando)"
+    attributes:
+      user_session: # "(or whatever name you are using)"
+      login: "login"
+      email: "email"
+      password: "contraseña"
+      remember_me: "recuerdame"

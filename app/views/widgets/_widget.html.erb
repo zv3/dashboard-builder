@@ -1,0 +1,16 @@
+<div id="widget">
+	<div class="widget-title"><%=h widget.name %></div>
+	<% unless widget.image.nil? %>
+		<div class="widget-image"><%= image_tag widget.image.data.url(:thumb) %></div>
+	<% end %>
+	<br />
+	<div class="widget-links">
+		<%= link_to "Ver", widget %>
+		<% if permitted_to? :update, widget %>
+			<%= link_to "Editar", edit_widget_path(widget) %>
+		<% end %>
+		<% if permitted_to? :delete, widget %>
+			<%= link_to "Borrar ", widget, :confirm => 'Esta accion producirá el borrado del widget de nuestra biblioteca de widgets además del escritorio de los usuarios. Desea continuar?', :method => :delete %>
+		<% end %>
+	</div>
+</div>

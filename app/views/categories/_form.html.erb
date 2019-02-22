@@ -1,0 +1,20 @@
+<div class="gform_wrapper">
+  <% form_for @category do |f| %>
+    <%= f.error_messages %>
+      <div class="gform_body">
+        <ul class="gform_fields right_label">
+          <li class="gfield">
+            <%= f.label :name, 'Nombre', :class => 'gfield_label' %>
+            <div class="ginput_container"><%= f.text_field :name %></div>
+          </li>
+          <li class="gfield">
+            <%= f.label :category_type, 'Tipo de Categoría', :class => 'gfield_label' %>
+            <div class="ginput_container"><%= select :category, :category_type, { "Widget" => "w", "Tema" => "t"} %></div>
+          </li>
+        </ul>
+      </div>
+  		<div class="gform_footer right_label">
+  			<input type="image" tabindex="6" src="/images/woo/btn-submit.png">
+  		</div>
+   <% end %>
+</div>

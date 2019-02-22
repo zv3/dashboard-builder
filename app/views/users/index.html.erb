@@ -1,0 +1,23 @@
+<% title "Usuarios" %>
+
+<table>
+  <tr>
+    <th> Username </th>
+    <th> Email </th>
+    <th>  Rol </th>
+    <th> Fecha de registro </th>
+    <th> Baneado </th>
+    <th colspan="2"> Opciones </th>
+  </tr>
+  <% for user in @users %>
+    <tr>
+      <td> <%=h user.username %> </td>
+      <td> <%=h user.email %> </td>
+      <td> <%=h user.role.name %> </td>
+      <td> <%=h user.created_at %> </td>
+      <th> <%=h user.banned? ? "Si" : "No" %> </th>
+      <td align="center"> <%= link_to "Editar", edit_user_path(user) %> </td>
+      <td align="center"> <%= link_to "Borrar", user, :confirm => 'Esta seguro?', :method => :delete %> </td>
+    </tr>
+  <% end %>
+</table>

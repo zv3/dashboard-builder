@@ -1,0 +1,15 @@
+<div id="theme">
+	<div class="theme-title"><%=h theme.name %></div>
+	<% unless theme.image.nil? %>
+		<div class="theme-image"><%= image_tag theme.image.data.url(:thumb_t) %></div>
+	<% end %>
+	<div class="theme-links">
+		<%= link_to "Aplicar", theme %>
+		<% if permitted_to? :update, theme %>
+			<%= link_to "Editar", edit_theme_path(theme) %>
+		<% end %>
+		<% if permitted_to? :delete, theme %>
+			<%= link_to "Borrar ", theme, :confirm => 'Esta accion producira el borrado del theme de nuestra biblioteca. Desea continuar?', :method => :delete %>
+		<% end %>
+	</div>
+</div>

@@ -1,0 +1,11 @@
+<div id="comentario">
+	<div class="author"><%=h comment.user.username.upcase %></div>
+	<div class="datetime"><%=h comment.created_at.strftime('%d/%m/%Y %H:%M') %></div>
+	<div class="options">
+		<% if permitted_to? :destroy, comment %>
+			<%= link_to "Borrar", comment, :confirm => 'Esta seguro?', :method => :delete %> | 
+		<% end %>
+		<%= link_to "Reportar Abuso", new_request_path(:user_id=>current_user.id, :request_type=>'C', :id=>comment.id) %>
+	</div>
+	<div class="body"><%=h comment.message %></div>
+</div>

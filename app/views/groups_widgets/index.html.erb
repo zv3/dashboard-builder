@@ -1,0 +1,19 @@
+<% title "Widgets del Grupo" %>
+
+<table>
+  <tr>
+    <th>Widget</th>
+    <th>Opcion</th>
+  </tr>
+  <% for widget in @widgets %>
+    <tr>
+      <td><%=h widget.name %></td>
+      <td align="center"><%= link_to "Quitar", group_widget_path(@group, widget), :confirm => 'Está seguro?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p>
+	<%= link_to "Añadir", new_group_widget_path(@group) %>	|
+	<%= link_to "Volver a los Grupos", groups_path %>
+</p>

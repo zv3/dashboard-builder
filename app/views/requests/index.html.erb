@@ -1,0 +1,24 @@
+<% title "Solicitudes" %>
+
+<table>
+  <tr>
+    <th>Tipo</th>
+    <th>Fecha</th>
+    <th>Accion</th>
+  </tr>
+  <% for request in @requests %>
+    <tr>
+      <td>
+      		<% if request.request_type == 'C' %> 
+      			<%=h "Abuso Comentario" %>
+      		<% elsif request.request_type == 'W' %> 
+      			<%=h "Inclusion Widget" %>
+      		<% elsif request.request_type == 'T' %> 
+      			<%=h "Inclusion Tema" %>
+      		<% end %>
+      </td>
+      <td align="center"><%=h request.created_at %></td>
+      <td align="center"><%= link_to "Ver", request %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,1 @@
+page.replace_html 'widgets-list', :partial => 'widget', :collection => @widgets 

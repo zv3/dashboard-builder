@@ -1,0 +1,75 @@
+<% content_for :head do %>
+  <script type="text/javascript">
+  	var app = <%= @app.to_json %>
+  </script>
+  <%= javascript_include_tag 'ew/jquery-ui.min', 'jquery.json-2.2.min', 'ew/jquery.easywidgets', 'jqModal', 'custom', 'loadWidget' %>
+  <%= stylesheet_link_tag 'modal' %>
+<% end %>
+
+<% content_for :pageheading do %>
+  <div id="page-heading">
+    <div class="content">
+      <form id="tabSearchForm" class="autoclear atBottom" style="display: block;">
+        <div>
+          <fieldset>
+            <ul id="engineSelector">
+              <li><label class="google" for="tabSearchInput">Google</label></li>
+            </ul>
+            <input type="text" name="q" id="tabSearchInput" class="text search defaultText"><img src="/images/woo/clear.gif" title="Clear" id="tabSearchClear" style="right: 3px; display: none;">
+          </fieldset>
+          <input type="submit" id="tabSearchSubmit" class="nv-button" value="Google Search">
+        </div>
+        <div style="clear:both"></div>
+      </form>
+    </div>
+  </div>
+  <div id="tabs">	
+  </div>
+  <div id="modal">
+    <!-- nested dialog -->
+    <div id="ex4c" class="jqmDialog jqmdAbove">
+      <div class="jqmdTL">
+        <div class="jqmdTR">
+          <div id="jqm_pestanha" class="jqmdTC">Agregar nueva pesta&ntilde;a</div>
+        </div>
+      </div>
+      <div class="jqmdBL">
+        <div class="jqmdBR">
+          <div class="jqmdBC">
+            <div class="jqmdMSG">
+              <div class="output"> 
+              </div> 
+              <form>
+              <div class="gform_wrapper">
+                <div class="gform_body">
+                  <ul class="gform_fields right_label">
+                    <li class="gfield">
+                      <label class="gfield_label">Nombre de la pesta&ntilde;a</label>
+                      <div class="ginput_container"><input id="tabname" type="text" size="15" value=""/></div>
+                    </li>
+                    <li class="gfield">
+                      <label class="gfield_label">Cantidad de columnas</label>
+                      <div class="ginput_container">
+                        <select id="tabcols">
+                          <option value="1">Uno</option>
+                          <option value="2">Dos</option>
+                          <option value="3">Tres</option>
+                          <option value="4">Cuatro</option>
+                        </select>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="gform_footer right_label">
+                  <input id="submit" type="image" tabindex="6" src="/images/woo/btn-submit.png">
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <input type="image" src="/images/button-close.gif" class="jqmdX jqmClose" />
+    </div>
+  </div>
+<% end %>

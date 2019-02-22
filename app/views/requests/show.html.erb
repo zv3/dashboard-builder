@@ -1,0 +1,47 @@
+<% title "Solicitud" %>
+
+<p>
+  <strong>Usuario:</strong>
+  <%=h User.find_by_id(@request.user_id).username %>
+</p>
+
+<p>
+  <strong>Mensaje:</strong>
+  <%=h @request.message %>
+</p>
+
+<% if @request.request_type == 'C' %>
+	<p>
+  	<strong>Referencia:</strong><br />
+		<i>Widget:</i> <%=h @comment.widget.name %><br />
+		<i>Categoria:</i> <%=h @comment.widget.category.name %><br />
+		<i>Usuario:</i> <%=h User.find(@comment.user_id).username %><br />
+  	<i>Mensaje:</i><br /> <%=h @comment.message %><br />
+	</p>
+<% end %>
+
+<% if @request.request_type == 'W' %>
+	<p>
+  		<strong>Referencia:</strong><br />
+			<i>Widget:</i> <%=h @widget.name %><br />
+			<i>Owner:</i> <%=h @widget.user.username %><br />
+			<i>Categoria:</i> <%=h @widget.category.name %><br />
+	</p>
+<% end %>
+
+<% if @request.request_type == 'T' %>
+	<p>
+  		<strong>Referencia:</strong><br />
+			<i>Theme:</i> <%=h @theme.name %><br />
+			<i>Owner:</i> <%=h @theme.user.username %><br />
+			<i>Categoria:</i> <%=h @theme.category.name %><br />
+	</p>
+<% end %>
+
+<p>
+	<%= link_to "Aprobar", request_path(:approved => 'T'), :method => :delete %> |
+	<%= link_to "Rechazar", request_path(:approved => 'F'), :method => :delete  %>
+</p>  	
+<p>
+	<%= link_to "Ver todos", requests_path %>
+</p>

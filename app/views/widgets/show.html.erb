@@ -1,0 +1,52 @@
+<% title "Widget" %>
+
+<p>
+  <strong>Nombre:</strong>
+  <%=h @widget.name %>
+	<% unless @widget.image.nil? %>
+		<br /><%= image_tag @widget.image.data.url(:thumb) %>
+	<% end %>
+</p>
+<p>
+  <strong>Descripcion:</strong>
+  <%=h @widget.description %>
+</p>
+<p>
+  <strong>Agregado por:</strong>
+  <%=h @widget.user.username %>
+</p>
+<p>
+  <strong>URL:</strong>
+  <%=h @widget.url %>
+</p>
+<p>
+  <strong>Rating:</strong>
+  <%=h @rate.to_i %>
+</p>
+<p>
+  <strong>Tags:</strong>
+  <%=h @widget.tag_names %>
+</p>
+<p>
+	<%= link_to "Agregar a mi Escritorio", new_container_path(:widget_id => @widget.id) %> |
+	<% if permitted_to? :update, @widget %>
+		<%= link_to "Editar", edit_widget_path(@widget) %> |
+	<% end %>
+	<% if permitted_to? :destroy, @widget %>
+		<%= link_to "Borrar", @widget, :confirm => "Esta seguro?", :method => :delete %> |
+	<% end %>
+	<%= link_to "Ver todos", widgets_path %>
+</p>
+
+<div id="comment-list">
+	<br /><h2>Comentarios(<%= @widget.comments.size %>)</h2>
+	<%= render :partial => 'comment', :collection => @widget.comments %>
+	<p>
+		<% if permitted_to? :create, Comment.new %>
+			<%= link_to "Escribir comentario", new_widget_comment_path(:widget_id => @widget.id) %> | 
+		<% end %>
+		<% if permitted_to? :create, Rating.new %>
+			<%= link_to "Puntuar", new_widget_rating_path(:widget_id => @widget.id) %>
+		<% end %>
+	</p>
+</div>

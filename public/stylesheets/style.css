@@ -1,0 +1,260 @@
+/********** Global Styles **********/
+body{
+	font-family: Arial, Verdana, Tahoma;
+	background-color:#a7a7a7;
+	font-size:11px;
+	color:#000;
+	padding:0px;
+	margin:0px;
+}
+#header, #content, #footer {	overflow:hidden;}
+.left{	float:left;}
+.right{	float:right;}
+
+
+/********** Header Styles **********/
+#header{
+	background:url(/images/bgtop.png) repeat-x top left;
+	height:120px;
+}
+#header .options{
+	background-color:#fff;
+	border-bottom-left-radius: 6px 6px;
+	border-bottom-right-radius: 6px 6px;
+	-moz-border-radius:0px 0px 6px 6px;
+	position:absolute;
+	top:0px;
+	right:20px;
+	height:35px;
+	line-height:35px;
+}
+#header .txt-opt{
+	float:left;
+	margin: 0 10px;
+	font-size: 12px;
+	font-family: Arial;
+}
+
+#header .txt-opt a {
+	text-decoration:none;
+}
+
+#header .tab{
+	background-color:#fff;
+	border-bottom-left-radius: 6px 6px;
+	border-bottom-right-radius: 6px 6px;
+	border-top-left-radius: 6px 6px;
+	border-top-right-radius: 6px 6px;
+	-moz-border-radius:6px 6px 6px 6px;
+	position:absolute;
+	top:37px;
+	float:left;
+	margin:0 20px;
+	padding:0 5px;
+	font-weight:bold;
+	height:25px;
+	width:200px;
+	line-height:25px;
+	overflow:hidden;
+}
+#header .tab .name{
+	float:left;
+}
+#header .tab .options{
+	float:right;
+	margin:2.5px 5px;
+	padding:0 5px;
+	line-height:20px;
+	height:20px;
+	border-right:1px solid #000;
+	overflow:hidden;
+}
+#header .options .edit{
+	background-image: url(/images/edit-b.png);
+	width:18px;
+	height:15px;
+	margin-top:2px;
+}
+#header .options .add, #header .options .delete, #header .options .edit{
+	float:right;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+#header .tab .more{
+	background-image: url(/images/arrow-d.png);
+	width:11px;
+	height:10px;
+	margin-top:8px;
+	float:right;
+}
+#header .tab .less{
+	background-image: url(/images/arrow-u.png);
+	width:11px;
+	height:10px;
+	margin-top:8px;
+	float:right;
+}
+#tab-list .tab{
+	visibility:hidden;
+}
+#tab-list .selected{
+	visibility:visible;
+}
+#tab-selection{
+	background-color:#fff;
+	border-bottom-left-radius: 6px 6px;
+	border-bottom-right-radius: 6px 6px;
+	border-top-left-radius: 6px 6px;
+	border-top-right-radius: 6px 6px;
+	-moz-border-radius:6px 6px 6px 6px;
+	position:absolute;
+	top:67px;
+	float:left;
+	margin:0 20px;
+	padding:0 5px;
+	font-weight:bold;
+	width:200px;
+	line-height:20px;
+	overflow:hidden;
+	display:none;
+}
+#header .stripe{
+	background-color:#000;
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+	height:10px;
+	width:100%;
+	position:absolute;
+	top:45px;
+	margin:0;
+	padding:0;
+}
+#header .logo{
+	background-image:url(/images/logo.png);
+	margin:auto;
+	width:282px;
+	height:47px;
+	position:relative;
+	top:20px;
+}
+
+/********** Content Styles **********/
+#content{
+	padding: 10px;
+}
+#content .rounded {
+	background: #FFF url(/images/rounded.png) no-repeat left -20px;
+	color: #333;
+	padding: 20px;
+}
+#content table{
+	width:100%;
+}
+#content .left, #content .center, #content .right{
+	float:none;
+	min-width:200px;
+	padding:15px;
+	vertical-align:top;
+}
+#content .left{
+	width:32%;
+}
+#content .center{
+	width:43%;
+}
+
+.column {
+	float:left;
+	min-height:117px;
+}
+
+.gripper {
+	background:transparent url(img/gripper.png?v=491) no-repeat top center;
+	cursor:e-resize;
+	float:left;
+	height:100px;
+	overflow:hidden;
+	width:1%;
+	margin-top:5px;
+	padding:0;
+}
+
+/**
+ * This is the widgets basic CSS. Note that you can change
+ * the classes names using the plugin settings. But you can
+ * use directly the default classes names, this names.
+ */
+
+.widget-place {
+  margin: 0;
+  padding: 0;
+  float: left;
+  width: 33.3%;
+  height: auto;
+  list-style: none;
+  min-height: 400px;
+}
+
+.widget-placeholder {
+  border: #000 dashed 1px;
+}
+
+.widget-place{
+	min-height:30px;
+}
+.widget{
+	border:2px solid #000;
+	border-bottom-left-radius: 6px 6px;
+	border-bottom-right-radius: 6px 6px;
+	border-top-left-radius: 6px 6px;
+	border-top-right-radius: 6px 6px;
+	-moz-border-radius:6px 6px 6px 6px;
+	margin:10px 5px;
+	background-color:#910a0a;
+}
+.widget .title, .widget .widget-header{
+	border-color:#000;
+	border-top-left-radius: 6px 6px;
+	border-top-right-radius: 6px 6px;
+	border-bottom-left-radius: 6px 6px;
+	border-bottom-right-radius: 6px 6px;
+	-moz-border-radius:6px 6px 6px 6px;
+	background-color:#910a0a;
+	color:#fff;
+	overflow:hidden;
+	height:20px;
+	padding:5px;
+}
+.widget .title .text, .widget .widget-header .text{
+	float:left;
+	font-weight:bold;
+	font-size:14px;
+}
+.widget .title .options, .widget .widget-header .options{
+	float:right;
+}
+.widget .content, .widget .widget-content{
+	border-color:#000;
+	border-bottom-left-radius: 6px 6px;
+	border-bottom-right-radius: 6px 6px;
+	-moz-border-radius:0 0 6px 6px;
+	background-color:#fff;
+	color:#000;
+}
+.widget .title .edit, .widget .widget-header .edit{
+	background-image: url(/images/edit-w.png);
+	width:18px;
+	height:15px;
+}
+.widget .title .delete, .widget .title .edit, .widget .widget-header .delete, .widget .widget-header .edit{
+	float:right;
+	margin: 0 2px;
+}
+
+/********** Footer Styles **********/
+#footer{
+	border-top:1px solid #333;
+	padding: 10px 30px;
+}

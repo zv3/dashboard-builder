@@ -1,0 +1,7 @@
+<% title "Solicitud" %>
+
+<%= render :partial => 'form' %>
+
+<% if permitted_to? :index, request %>
+	<p><%= link_to "Atras", requests_path %></p>
+<% end %>
