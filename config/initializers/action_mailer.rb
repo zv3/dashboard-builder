@@ -3,10 +3,10 @@ ActionMailer::Base.smtp_settings = {
   :tls => true,
   :address => "smtp.gmail.com",
   :port => "587",
-  :domain => "se2.heroku.com",
+  :domain => "",
   :authentication => :plain,
-  :user_name => "se2widgets@gmail.com",
-  :password => "unrayodesol"
+  :user_name => "",
+  :password => ""
 }
 
 
